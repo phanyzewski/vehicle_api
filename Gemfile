@@ -29,7 +29,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'database_cleaner', require: false
-  gem 'factory_girl_rails', require: false
+  gem 'factory_bot_rails', require: false
+  gem 'faker', require: false
   gem 'rspec' # https://github.com/Shopify/statsd-instrument/issues/83
   gem 'rspec-collection_matchers', require: false
   gem 'rspec-rails'

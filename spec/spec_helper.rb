@@ -15,6 +15,12 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'pry'
 require 'rspec/collection_matchers'
+require 'faker'
+
+# spec/support is added to the load path, but not eager loaded.
+# You still need to require individual support modules as needed.
+$LOAD_PATH.unshift File.expand_path('../support', __FILE__)
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

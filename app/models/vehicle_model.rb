@@ -1,5 +1,7 @@
 class VehicleModel < ApplicationRecord
-  has_one :vehicle_make
-  has_many :models_options
-  has_many :vehicle_options, through: :models_options
+  belongs_to :vehicle_make
+  has_many :vehicles
+
+  has_many :options_vehicle_model
+  has_many :options, through: :options_vehicle_model
 end

@@ -15,34 +15,43 @@ ActiveRecord::Schema.define(version: 20180315154140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "options", force: :cascade do |t|
+    t.string "name"
+    t.boolean "included"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "options_vehicle_models", id: false, force: :cascade do |t|
+    t.bigint "option_id", null: false
+    t.bigint "vehicle_model_id", null: false
+    t.index ["option_id", "vehicle_model_id"], name: "index_options_vehicle_models_on_option_id_and_vehicle_model_id"
+    t.index ["vehicle_model_id", "option_id"], name: "index_options_vehicle_models_on_vehicle_model_id_and_option_id"
+  end
+
   create_table "vehicle_makes", primary_key: "vehicle_make_id", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "vehicle_models", force: :cascade do |t|
-    t.string "model_name"
+  create_table "vehicle_models", primary_key: "vehicle_model_id", force: :cascade do |t|
+    t.bigint "vehicle_make_id"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "vehicle_models_options", id: false, force: :cascade do |t|
-    t.bigint "vehicle_model_id", null: false
-    t.bigint "vehicle_option_id", null: false
-  end
-
-  create_table "vehicle_options", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["vehicle_make_id"], name: "index_vehicle_models_on_vehicle_make_id"
   end
 
   create_table "vehicles", primary_key: "vehicle_id", force: :cascade do |t|
-    t.string "vehicle_identificaiton_number"
+    t.bigint "vehicle_make_id"
+    t.bigint "vehicle_model_id"
+    t.string "vin"
     t.string "owner"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["vehicle_make_id"], name: "index_vehicles_on_vehicle_make_id"
+    t.index ["vehicle_model_id"], name: "index_vehicles_on_vehicle_model_id"
   end
 
-  add_foreign_key "vehicles", "vehicles", primary_key: "vehicle_id"
 end
