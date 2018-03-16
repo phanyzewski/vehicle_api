@@ -16,9 +16,23 @@ AllCops:
 Rails:
   Enabled: true
 
-# `if foo = some_method` is too useful to give up
-Lint/AssignmentInCondition:
-  Enabled: false
+# Lint/AssignmentInCondition:
+#   Enabled: false
 
 Metrics/LineLength:
   Max: 120
+
+Layout/AlignParameters:
+  Enabled: false
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Style/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
