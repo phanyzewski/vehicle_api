@@ -6,5 +6,3 @@ FactoryBot.define do
     options { [FactoryBot.create(:option)] }
   end
 end
-
-

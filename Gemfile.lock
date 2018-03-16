@@ -188,7 +188,7 @@ DEPENDENCIES
   rspec-collection_matchers
   rspec-rails
   rubocop
-  rubocop-rspec
+  rubocop-rspec (~> 1.5)
   tzinfo-data
 
 BUNDLED WITH
