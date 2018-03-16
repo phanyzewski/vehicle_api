@@ -4,7 +4,8 @@ class CreateVehicles < ActiveRecord::Migration[5.1]
       t.references :vehicle_make
       t.references :vehicle_model
       t.string :vin, unique: true
-      t.string :owner, null: true
+      t.string :owner
+      t.string :year
       t.timestamps
     end
   end
