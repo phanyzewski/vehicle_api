@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20180315154140) do
     t.bigint "vehicle_model_id"
     t.string "vin"
     t.string "owner"
+    t.string "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vehicle_make_id"], name: "index_vehicles_on_vehicle_make_id"
