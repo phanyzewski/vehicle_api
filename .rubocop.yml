@@ -40,3 +40,6 @@ Metrics/BlockLength:
 Style/Documentation:
   Include:
     - lib/**/*
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
