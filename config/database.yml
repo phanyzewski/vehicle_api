@@ -78,8 +78,7 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: vehicle_api_production
-  username: vehicle_api
-  password: <%= ENV['VEHICLE_API_DATABASE_PASSWORD'] %>
+test:
+  adapter: postgresql
+  database: travis_ci_test
+

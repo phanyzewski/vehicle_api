@@ -3,5 +3,3 @@ FactoryBot.define do
     name { Faker::Vehicle.manufacture }
   end
 end
-
-

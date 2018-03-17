@@ -5,5 +5,4 @@ class Vehicle < ApplicationRecord
   has_many :options, through: :vehicle_model
 
   validates :vin, uniqueness: true
-
 end

@@ -28,15 +28,14 @@ gem 'puma', '~> 3.7'
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'database_cleaner', require: false
   gem 'factory_bot_rails', require: false
   gem 'faker', require: false
   gem 'rspec' # https://github.com/Shopify/statsd-instrument/issues/83
   gem 'rspec-collection_matchers', require: false
   gem 'rspec-rails'
 
-  gem 'rubocop', require: false
-  gem 'rubocop-rspec', require: false
+  gem 'rubocop', '~> 0.52', require: false
+  gem 'rubocop-rspec', '~> 1.5', require: false
 end
 
 group :development do
