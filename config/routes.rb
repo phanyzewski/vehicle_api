@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :vehicles do
-    resources :options
-  end
-  # resources :vehicle_make
+  resources :vehicles
+  resources :vehicle_models
   # resources :vehicle_model
 end
