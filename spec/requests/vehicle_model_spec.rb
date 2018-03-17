@@ -6,16 +6,16 @@ RSpec.describe 'Vehicle Models API', type: :request do
 
   let(:vehicle_make_id) { models.first.vehicle_make.vehicle_make_id }
   let(:vehicle_model_id) { models.first.id }
-  let(:vin) { vehicles.first.vin }
 
   describe 'GET /vehicle_models' do
     before { get '/vehicle_models' }
 
     it 'returns vehicle models' do
       expect(JSON.parse(response.body)).not_to be_empty
+    end
+    it 'returns all available vehicle models' do
       expect(JSON.parse(response.body).size).to eq(5)
     end
-
     it 'returns status code 200' do
       expect(response).to have_http_status(:ok)
     end
@@ -27,17 +27,17 @@ RSpec.describe 'Vehicle Models API', type: :request do
     context 'when the record exists' do
       it 'returns the vehicle_model' do
         expect(JSON.parse(response.body)).not_to be_empty
+      end
+      it 'returns the expected vehicle model' do
         expect(JSON.parse(response.body)['vehicle_model_id']).to eq(vehicle_model_id)
       end
     end
-
     context 'when the record does not exist' do
       let(:vehicle_model_id) { 100 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(:not_found)
       end
-
       it 'returns not found message' do
         expect(response.body).to match(/Couldn't find Vehicle/)
       end

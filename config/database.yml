@@ -78,7 +78,3 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-test:
-  adapter: postgresql
-  database: travis_ci_test
-
