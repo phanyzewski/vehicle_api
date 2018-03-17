@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Vehicle Makes API', type: :request do
   let!(:options) { FactoryBot.create_list(:option, 5) }
-  let!(:option_name) { Faker::Hipster.words(1) }
-  let!(:option_included) { Faker::Boolean.boolean}
+  let!(:option_name) { Faker::Hipster.words(1).first }
+  let!(:option_included) { Faker::Boolean.boolean }
   let(:option_id) { options.first.id }
 
   describe 'GET /options' do
@@ -39,7 +39,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
         expect(response).to have_http_status(:not_found)
       end
       it 'returns not found message' do
-        expect(response.body).to match(/Couldn't find Vehicle/)
+        expect(response.body).to match(/Couldn't find Option/)
       end
     end
   end
@@ -50,7 +50,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
       let(:valid_attributes) { { name: option_name, included: option_included } }
 
       it 'creates an option' do
-        expect(JSON.parse(response.body)['name']).to eq(make_name)
+        expect(JSON.parse(response.body)['name']).to eq(option_name)
       end
       it 'returns status code 201' do
         expect(response).to have_http_status(:created)
