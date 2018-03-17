@@ -36,3 +36,7 @@ Style/BlockLength:
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
+
+Style/Documentation:
+  Include:
+    - lib/**/*

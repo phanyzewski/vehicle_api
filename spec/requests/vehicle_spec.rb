@@ -13,6 +13,8 @@ RSpec.describe 'Vehicles API', type: :request do
 
     it 'returns vehicles' do
       expect(JSON.parse(response.body)).not_to be_empty
+    end
+    it 'returns all available vehicles' do
       expect(JSON.parse(response.body).size).to eq(5)
     end
 
@@ -27,6 +29,8 @@ RSpec.describe 'Vehicles API', type: :request do
     context 'when record exists' do
       it 'returns the vehicle' do
         expect(JSON.parse(response.body)).not_to be_empty
+      end
+      it 'returns the correct vehicle id' do
         expect(JSON.parse(response.body)['vehicle_id']).to eq(vehicle_id)
       end
     end
