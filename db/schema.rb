@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315154140) do
+ActiveRecord::Schema.define(version: 20180318154140) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "options", force: :cascade do |t|
     t.string "name"
-    t.boolean "included"
+    t.boolean "option_included", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 20180315154140) do
     t.bigint "vehicle_model_id", null: false
     t.index ["option_id", "vehicle_model_id"], name: "index_options_vehicle_models_on_option_id_and_vehicle_model_id"
     t.index ["vehicle_model_id", "option_id"], name: "index_options_vehicle_models_on_vehicle_model_id_and_option_id"
+  end
+
+  create_table "options_vehicles", id: false, force: :cascade do |t|
+    t.bigint "option_id", null: false
+    t.bigint "vehicle_id", null: false
+    t.index ["option_id", "vehicle_id"], name: "index_options_vehicles_on_option_id_and_vehicle_id"
+    t.index ["vehicle_id", "option_id"], name: "index_options_vehicles_on_vehicle_id_and_option_id"
   end
 
   create_table "vehicle_makes", primary_key: "vehicle_make_id", force: :cascade do |t|
