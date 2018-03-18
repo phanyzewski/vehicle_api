@@ -1,2 +1,0 @@
-class VehicleOptionsController < ApplicationController
-end
