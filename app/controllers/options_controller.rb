@@ -28,7 +28,7 @@ class OptionsController < ApplicationController
   private
 
   def option_params
-    params.permit(:name, :included)
+    params.permit(:name, :option_included)
   end
 
   def set_option

@@ -5,5 +5,6 @@ FactoryBot.define do
 
     vin { Faker::Vehicle.vin }
     year { Faker::Number.between(1884, Time.zone.today.year) }
+    options { FactoryBot.create_list(:option, 5) }
   end
 end
