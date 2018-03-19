@@ -5,17 +5,17 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     resources :options
+    resources :vehicles do
+      resources :options
+    end
 
     resources :vehicle_makes do
+      resources :vehicles, only: [:index, :show]
       resources :vehicle_models, only: [:index, :show]
     end
 
     resources :vehicle_models do
-      resources :options, only: [:index, :show, :create]
       resources :vehicles, only: [:index, :show]
-    end
-
-    resources :vehicles do
       resources :options
     end
   end

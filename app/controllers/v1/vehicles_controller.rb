@@ -5,8 +5,15 @@ module V1
     before_action :set_vehicle, only: %i[show update destroy]
 
     def index
-      @vehicles = Vehicle.all
-      json_response(@vehicles)
+      @vehicles =
+        if vehicle_params.present?
+          Vehicle.where(vehicle_params)
+        else
+          Vehicle.all
+        end
+
+      json_string = VehicleSerializer.new(@vehicles).serialized_json
+      json_response(json_string)
     end
 
     def create
@@ -15,7 +22,8 @@ module V1
     end
 
     def show
-      json_response(@vehicle)
+      json_string = VehicleSerializer.new(@vehicle).serialized_json
+      json_response(json_string)
     end
 
     def update

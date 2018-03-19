@@ -6,7 +6,8 @@ module V1
 
     def index
       @vehicle_makes = VehicleMake.all
-      json_response(@vehicle_makes)
+      json_string = VehicleMakeSerializer.new(@vehicle_makes).serialized_json
+      json_response(json_string)
     end
 
     def create
@@ -15,7 +16,8 @@ module V1
     end
 
     def show
-      json_response(@vehicle_make)
+      json_string = VehicleMakeSerializer.new(@vehicle_make).serialized_json
+      json_response(json_string)
     end
 
     def update
