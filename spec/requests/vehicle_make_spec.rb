@@ -15,7 +15,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
       expect(JSON.parse(response.body)).not_to be_empty
     end
     it 'returns all available vehicle makes' do
-      expect(JSON.parse(response.body).size).to eq(5)
+      expect(JSON.parse(response.body)['data'].size).to eq(5)
     end
     it 'returns status code 200' do
       expect(response).to have_http_status(:ok)
@@ -30,7 +30,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
         expect(JSON.parse(response.body)).not_to be_empty
       end
       it 'returns the expected vehicle_make' do
-        expect(JSON.parse(response.body)['vehicle_make_id']).to eq(vehicle_make_id)
+        expect(JSON.parse(response.body)['data']['id']).to eq(vehicle_make_id.to_s)
       end
     end
 
