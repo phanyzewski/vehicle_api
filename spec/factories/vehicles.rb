@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :vehicle do
     association :vehicle_model, strategy: :build
+    association :vehicle_make, strategy: :build
 
     vin { Faker::Vehicle.vin }
     mileage { Faker::Number.between(500, 999_999) }

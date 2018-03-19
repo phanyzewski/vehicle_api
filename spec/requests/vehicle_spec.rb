@@ -18,7 +18,7 @@ RSpec.describe 'Vehicles API', type: :request do
       expect(JSON.parse(response.body)).not_to be_empty
     end
     it 'returns all available vehicles' do
-      expect(JSON.parse(response.body).size).to eq(5)
+      expect(JSON.parse(response.body)['data'].size).to eq(5)
     end
 
     it 'returns status code 200' do
@@ -34,7 +34,7 @@ RSpec.describe 'Vehicles API', type: :request do
         expect(JSON.parse(response.body)).not_to be_empty
       end
       it 'returns the correct vehicle id' do
-        expect(JSON.parse(response.body)['vehicle_id']).to eq(vehicle_id)
+        expect(JSON.parse(response.body)['data']['id']).to eq(vehicle_id.to_s)
       end
     end
     context 'when record does not exist' do
@@ -56,8 +56,8 @@ RSpec.describe 'Vehicles API', type: :request do
       let(:valid_attributes) do
         {
           vin: '123abc',
-          vehicle_model_id: model.id,
-          vehilce_make_id: make.id
+          vehicle_model_id: model.vehicle_model_id,
+          vehicle_make_id: make.vehicle_make_id
         }
       end
 
@@ -73,8 +73,8 @@ RSpec.describe 'Vehicles API', type: :request do
       let(:invalid_attributes) do
         {
           vin: vin,
-          vehicle_model_id: model.id,
-          vehilce_make_id: make.id
+          vehicle_model_id: model.vehicle_model_id,
+          vehicle_make_id: make.vehicle_make_id
         }
       end
 
@@ -92,9 +92,9 @@ RSpec.describe 'Vehicles API', type: :request do
     end
   end
 
-  describe 'update vhicle options' do
+  describe 'update vehicle options' do
     before { put "/v1/vehicles/#{vehicle_id}/options/#{option_id}", params: valid_attributes }
-    let(:valid_attributes) { { option_id: option_id, option_included: true } }
+    let(:valid_attributes) { { option_id: option_id, vehicle_ids: vehicle_id, option_included: true } }
 
     context 'when vehicle option exists' do
       it 'returns status code 204' do
