@@ -11,17 +11,23 @@ vehicle_options = []
       model_options << Option.create(name: Faker::Hipster.words(1), option_included: true)
     end
 
-    mod = VehicleModel.create(name: Faker::Beer.hop, vehicle_make: make, options: model_options)
+    mod = VehicleModel.create(
+      name: Faker::Beer.hop,
+      year: Faker::Number.between(1884, Time.zone.today.year),
+      vehicle_make: make, options: model_options
+      )
 
     4.times do
-      vehicle_options << Option.create(name: Faker::Hipster.words(1), option_included: false)
+      vehicle_options << Option.create(name: Faker::Hipster.words(1),
+       option_included: false
+       )
     end
 
     5.times do
       Vehicle.create(
         vin: Faker::Vehicle.vin,
-        year: Faker::Number.between(1884, Time.zone.today.year),
         vehicle_model: mod,
+        mileage: Faker::Number.between(1000, 999999),
         options: vehicle_options
       )
     end
