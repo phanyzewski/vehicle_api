@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
+gem 'graphql'
+gem 'graphql-client'
 
 gem 'fast_jsonapi'
 gem 'oj'
@@ -40,7 +42,11 @@ group :development, :test do
 end
 
 group :development do
+  gem 'coffee-rails'
+  gem 'graphiql-rails'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'sass-rails'
+  gem 'uglifier'
 end
 
 group :test do

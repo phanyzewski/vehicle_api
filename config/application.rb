@@ -9,7 +9,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
+require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
@@ -18,6 +18,14 @@ Bundler.require(*Rails.groups)
 
 module VehicleApi
   class Application < Rails::Application
+
+    # Add graphqlql files
+    config.eager_load_paths += %W[#{config.root}/app/graphql/types]
+    config.eager_load_paths += %W[#{config.root}/app/graphql/queries]
+    config.eager_load_paths += %W[#{config.root}/app/graphql/resolvers]
+    config.eager_load_paths += %W[#{config.root}/app/graphql/mutations]
+    config.eager_load_paths += %W[#{config.root}/app/graphql/functions]
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
