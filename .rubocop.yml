@@ -33,6 +33,7 @@ Style/BlockLength:
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
+    - 'app/graphql/types/*.rb'
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
@@ -43,3 +44,7 @@ Style/Documentation:
 
 Rails/HasAndBelongsToMany:
   Enabled: false
+
+Style/Lambda:
+  Enabled: false
+

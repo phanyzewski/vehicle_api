@@ -3,6 +3,8 @@
   VehicleAPI presents a vehicle with makes, models, & options to be listed,
 added, updated, deleted & associated to each other.
 
+[![Build Status](https://travis-ci.org/phanyzewski/vehicle_api.svg?branch=master)](https://travis-ci.org/phanyzewski/vehicle_api)
+
 ## Schema
   All api data is sent and received as JSON.  For the purpose of this example seed data is generated and can be accessed locally when running the server.
 
@@ -20,7 +22,9 @@ added, updated, deleted & associated to each other.
   
   Resources made available through this api include vehicles, vehicle_models, vehicle_makes and options.
   Vehicles as well as vehicle_models are closely associated with options
+  
   `GET /v1/vehicle_models/1/options`
+  
   `DELETE /v1/vehicles/1/options/1/`
 
   Vehicles, their models and their makes are likewise associated with each other.
@@ -31,25 +35,80 @@ added, updated, deleted & associated to each other.
     
   ### example
   ```javascript
-  query vehicle(vin: '3GCUKREC3EG233361') {
-    mileage
-    vehicle_make
-    vehicle_model
-  }
-  ```
-  **response**
-  ```
-  {
-  "data": {
-    "mileage": 75000,
-      "vehicle_make": {
-      "name": "Kia"
-    },
-    "vehicle_model": {
-       "name": "Optima",
-       "year": "2013"
+query manufacturer($name: String!) {
+  manufacturer(name: $name) {
+  name
+    vehicle_models {
+      name
+      options {
+        name
+        option_included
+      }
+      vehicles {
+        mileage
+        vin 
+        options {
+          name
+          option_included
         }
       }
     }
+  }
+}
+  ```
+  **response**
+  ```
+{
+  "data": {
+    "manufacturer": {
+      "name": "DAIMLERCHRYLSER AG",
+      "vehicle_models": [
+        {
+          "name": "Saaz",
+          "options": [
+            {
+              "name": "[\"roof\"]",
+              "option_included": true
+            },
+            {
+              "name": "[\"viral\"]",
+              "option_included": true
+            }
+          ],
+          "vehicles": [
+            {
+              "mileage": 607478,
+              "vin": "1C92EKMS7D2GACAMM",
+              "options": [
+                {
+                  "name": "[\"tumblr\"]",
+                  "option_included": false
+                },
+                {
+                  "name": "[\"disrupt\"]",
+                  "option_included": false
+                }
+              ]
+            },
+            {
+              "mileage": 195645,
+              "vin": "RF38WTX49KNRS0CSL",
+              "options": [
+                {
+                  "name": "[\"austin\"]",
+                  "option_included": false
+                },
+                {
+                  "name": "[\"bitters\"]",
+                  "option_included": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+
 ```
  This example implements [graphiql](https://github.com/graphql/graphiql).  By navigating to localhost:1234/graphiql you can interactively browse the schema, run queries and mutations as defined by the server.

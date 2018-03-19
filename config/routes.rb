@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   root           to: 'status#index'
   get '/status', to: 'status#index'
+  post "/graphql", to: "graphql#execute"
 
   namespace :v1 do
     resources :options
@@ -18,5 +19,9 @@ Rails.application.routes.draw do
       resources :vehicles, only: [:index, :show]
       resources :options
     end
+  end
+
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: '/graphiql', graphql_path: '/graphql'
   end
 end
