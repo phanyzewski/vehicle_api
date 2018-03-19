@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Vehicles API', type: :request do
   let!(:vehicles) { FactoryBot.create_list(:vehicle, 5) }
   let!(:model) { vehicles.first.vehicle_model }
+  let!(:make) { vehicles.first.vehicle_model.vehicle_make }
 
   let(:vehicle_id) { vehicles.first.id }
   let(:vin) { vehicles.first.vin }
@@ -55,7 +56,8 @@ RSpec.describe 'Vehicles API', type: :request do
       let(:valid_attributes) do
         {
           vin: '123abc',
-          vehicle_model_id: model.id
+          vehicle_model_id: model.id,
+          vehilce_make_id: make.id
         }
       end
 
@@ -71,7 +73,8 @@ RSpec.describe 'Vehicles API', type: :request do
       let(:invalid_attributes) do
         {
           vin: vin,
-          vehicle_model_id: model.id
+          vehicle_model_id: model.id,
+          vehilce_make_id: make.id
         }
       end
 

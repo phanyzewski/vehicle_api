@@ -25,15 +25,23 @@ ActiveRecord::Schema.define(version: 20180318154140) do
   create_table "options_vehicle_models", id: false, force: :cascade do |t|
     t.bigint "option_id", null: false
     t.bigint "vehicle_model_id", null: false
+    t.bigint "options_id"
+    t.bigint "vehicle_models_id"
     t.index ["option_id", "vehicle_model_id"], name: "index_options_vehicle_models_on_option_id_and_vehicle_model_id"
+    t.index ["options_id"], name: "index_options_vehicle_models_on_options_id"
     t.index ["vehicle_model_id", "option_id"], name: "index_options_vehicle_models_on_vehicle_model_id_and_option_id"
+    t.index ["vehicle_models_id"], name: "index_options_vehicle_models_on_vehicle_models_id"
   end
 
   create_table "options_vehicles", id: false, force: :cascade do |t|
     t.bigint "option_id", null: false
     t.bigint "vehicle_id", null: false
+    t.bigint "vehicles_id"
+    t.bigint "options_id"
     t.index ["option_id", "vehicle_id"], name: "index_options_vehicles_on_option_id_and_vehicle_id"
+    t.index ["options_id"], name: "index_options_vehicles_on_options_id"
     t.index ["vehicle_id", "option_id"], name: "index_options_vehicles_on_vehicle_id_and_option_id"
+    t.index ["vehicles_id"], name: "index_options_vehicles_on_vehicles_id"
   end
 
   create_table "vehicle_makes", primary_key: "vehicle_make_id", force: :cascade do |t|
@@ -45,17 +53,20 @@ ActiveRecord::Schema.define(version: 20180318154140) do
   create_table "vehicle_models", primary_key: "vehicle_model_id", force: :cascade do |t|
     t.bigint "vehicle_make_id"
     t.string "name"
+    t.string "year"
+    t.string "category"
+    t.string "trim"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vehicle_make_id"], name: "index_vehicle_models_on_vehicle_make_id"
   end
 
   create_table "vehicles", primary_key: "vehicle_id", force: :cascade do |t|
-    t.bigint "vehicle_make_id"
     t.bigint "vehicle_model_id"
+    t.bigint "vehicle_make_id"
     t.string "vin"
     t.string "owner"
-    t.string "year"
+    t.integer "mileage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["vehicle_make_id"], name: "index_vehicles_on_vehicle_make_id"
