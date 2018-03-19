@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module V1
   class VehicleModelsController < ApplicationController
-    before_action :set_vehicle_model, only: [:show, :update, :destroy]
+    before_action :set_vehicle_model, only: %i[show update destroy]
 
     def index
       @vehicle_models = VehicleModel.all

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Vehicle Makes API', type: :request do
@@ -6,8 +8,8 @@ RSpec.describe 'Vehicle Makes API', type: :request do
   let!(:option_included) { true }
   let(:option_id) { options.first.id }
 
-  describe 'GET /options' do
-    before { get '/options' }
+  describe 'GET /v1/options' do
+    before { get '/v1/options' }
 
     it 'returns options' do
       expect(JSON.parse(response.body)).not_to be_empty
@@ -20,8 +22,8 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
   end
 
-  describe 'GET /options/:id' do
-    before { get "/options/#{option_id}" }
+  describe 'GET /v1/options/:id' do
+    before { get "/v1/options/#{option_id}" }
 
     context 'when the record exists' do
       it 'returns the option' do
@@ -44,9 +46,9 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
   end
 
-  describe 'POST /options' do
+  describe 'POST /v1/options' do
     context 'when there is a valid request' do
-      before { post '/options', params: valid_attributes }
+      before { post '/v1/options', params: valid_attributes }
       let(:valid_attributes) { { name: option_name, option_included: option_included } }
 
       it 'creates an option' do
@@ -57,7 +59,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
       end
     end
     context 'when there is an invalid request' do
-      before { post '/options', params: {} }
+      before { post '/v1/options', params: {} }
 
       it 'returns a validation failed message' do
         expect(response.body).to match(/Validation failed: Name can't be blank/)
@@ -65,8 +67,8 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
   end
 
-  describe 'DELETE /options/:id' do
-    before { delete "/options/#{option_id}" }
+  describe 'DELETE /v1/options/:id' do
+    before { delete "/v1/options/#{option_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(:no_content)
