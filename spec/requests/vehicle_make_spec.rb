@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Vehicle Makes API', type: :request do
@@ -6,8 +8,8 @@ RSpec.describe 'Vehicle Makes API', type: :request do
 
   let(:vehicle_make_id) { makes.first.vehicle_make_id }
 
-  describe 'GET /vehicle_makes' do
-    before { get '/vehicle_makes' }
+  describe 'GET /v1/vehicle_makes' do
+    before { get '/v1/vehicle_makes' }
 
     it 'returns vehicle makes' do
       expect(JSON.parse(response.body)).not_to be_empty
@@ -20,8 +22,8 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
   end
 
-  describe 'GET /vehicle_makes/:id' do
-    before { get "/vehicle_makes/#{vehicle_make_id}" }
+  describe 'GET /v1/vehicle_makes/:id' do
+    before { get "/v1/vehicle_makes/#{vehicle_make_id}" }
 
     context 'when the record exists' do
       it 'returns the vehicle_make' do
@@ -44,9 +46,9 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
   end
 
-  describe 'POST /vehicle_makes' do
+  describe 'POST /v1/vehicle_makes' do
     context 'when there is a valid request' do
-      before { post '/vehicle_makes', params: valid_attributes }
+      before { post '/v1/vehicle_makes', params: valid_attributes }
       let(:valid_attributes) { { vehicle_make_id: vehicle_make_id, name: make_name } }
 
       it 'creates a vehicle_make' do
@@ -57,7 +59,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
       end
     end
     context 'when there is an invalid request' do
-      before { post '/vehicle_makes', params: {} }
+      before { post '/v1/vehicle_makes', params: {} }
 
       it 'returns a validation failed message' do
         expect(response.body).to match(/Validation failed: Name can't be blank/)
@@ -65,8 +67,8 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
   end
 
-  describe 'DELETE /vehicle_makes/:id' do
-    before { delete "/vehicle_makes/#{vehicle_make_id}" }
+  describe 'DELETE /v1/vehicle_makes/:id' do
+    before { delete "/v1/vehicle_makes/#{vehicle_make_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(:no_content)

@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
@@ -26,10 +27,10 @@ gem 'puma', '~> 3.7'
 # gem 'rack-cors'
 
 group :development, :test do
-  gem 'pry-byebug'
-  gem 'pry-rails'
   gem 'factory_bot_rails', require: false
   gem 'faker', require: false
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec' # https://github.com/Shopify/statsd-instrument/issues/83
   gem 'rspec-collection_matchers', require: false
   gem 'rspec-rails'
@@ -47,4 +48,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

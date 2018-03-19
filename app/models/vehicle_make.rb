@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VehicleMake < ApplicationRecord
   has_many :vehicles, dependent: :destroy
   has_many :vehicle_models, dependent: :destroy

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :vehicle_model do
     association :vehicle_make, strategy: :build

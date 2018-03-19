@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Vehicles API', type: :request do
@@ -8,8 +10,8 @@ RSpec.describe 'Vehicles API', type: :request do
   let(:vin) { vehicles.first.vin }
   let(:option_id) { vehicles.first.options.first.id }
 
-  describe 'GET /vehicles' do
-    before { get '/vehicles' }
+  describe 'GET /v1/vehicles' do
+    before { get '/v1/vehicles' }
 
     it 'returns vehicles' do
       expect(JSON.parse(response.body)).not_to be_empty
@@ -23,8 +25,8 @@ RSpec.describe 'Vehicles API', type: :request do
     end
   end
 
-  describe 'GET /vehicles/:id' do
-    before { get "/vehicles/#{vehicle_id}" }
+  describe 'GET /v1/vehicles/:id' do
+    before { get "/v1/vehicles/#{vehicle_id}" }
 
     context 'when record exists' do
       it 'returns the vehicle' do
@@ -47,9 +49,9 @@ RSpec.describe 'Vehicles API', type: :request do
     end
   end
 
-  describe 'POST /vehicles' do
+  describe 'POST /v1/vehicles' do
     context 'when valid request' do
-      before { post '/vehicles', params: valid_attributes }
+      before { post '/v1/vehicles', params: valid_attributes }
       let(:valid_attributes) do
         {
           vin: '123abc',
@@ -65,7 +67,7 @@ RSpec.describe 'Vehicles API', type: :request do
       end
     end
     context 'when invalid request' do
-      before { post '/vehicles', params: invalid_attributes }
+      before { post '/v1/vehicles', params: invalid_attributes }
       let(:invalid_attributes) do
         {
           vin: vin,
@@ -79,8 +81,8 @@ RSpec.describe 'Vehicles API', type: :request do
     end
   end
 
-  describe 'DELETE /vehicles/:id' do
-    before { delete "/vehicles/#{vehicle_id}" }
+  describe 'DELETE /v1/vehicles/:id' do
+    before { delete "/v1/vehicles/#{vehicle_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(:no_content)
@@ -88,7 +90,7 @@ RSpec.describe 'Vehicles API', type: :request do
   end
 
   describe 'update vhicle options' do
-    before { put "/vehicles/#{vehicle_id}/options/#{option_id}", params: valid_attributes }
+    before { put "/v1/vehicles/#{vehicle_id}/options/#{option_id}", params: valid_attributes }
     let(:valid_attributes) { { option_id: option_id, option_included: true } }
 
     context 'when vehicle option exists' do

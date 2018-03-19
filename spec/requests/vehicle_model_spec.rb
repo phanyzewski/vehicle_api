@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Vehicle Models API', type: :request do
@@ -7,8 +9,8 @@ RSpec.describe 'Vehicle Models API', type: :request do
   let(:vehicle_make_id) { models.first.vehicle_make.vehicle_make_id }
   let(:vehicle_model_id) { models.first.id }
 
-  describe 'GET /vehicle_models' do
-    before { get '/vehicle_models' }
+  describe 'GET /v1/vehicle_models' do
+    before { get '/v1/vehicle_models' }
 
     it 'returns vehicle models' do
       expect(JSON.parse(response.body)).not_to be_empty
@@ -21,8 +23,8 @@ RSpec.describe 'Vehicle Models API', type: :request do
     end
   end
 
-  describe 'GET /vehicle_models/:id' do
-    before { get "/vehicle_models/#{vehicle_model_id}" }
+  describe 'GET /v1/vehicle_models/:id' do
+    before { get "/v1/vehicle_models/#{vehicle_model_id}" }
 
     context 'when the record exists' do
       it 'returns the vehicle_model' do
@@ -44,9 +46,9 @@ RSpec.describe 'Vehicle Models API', type: :request do
     end
   end
 
-  describe 'POST /vehicle_models' do
+  describe 'POST /v1/vehicle_models' do
     context 'when there is a valid request' do
-      before { post '/vehicle_models', params: valid_attributes }
+      before { post '/v1/vehicle_models', params: valid_attributes }
       let(:valid_attributes) { { vehicle_make_id: vehicle_make_id, name: model_name } }
 
       it 'creates a vehicle_model' do
@@ -57,7 +59,7 @@ RSpec.describe 'Vehicle Models API', type: :request do
       end
     end
     context 'when there is an invalid request' do
-      before { post '/vehicle_models', params: {} }
+      before { post '/v1/vehicle_models', params: {} }
 
       it 'returns a validation failed message' do
         expect(response.body).to match(/Validation failed: Vehicle make must exist/)
@@ -65,8 +67,8 @@ RSpec.describe 'Vehicle Models API', type: :request do
     end
   end
 
-  describe 'DELETE /vehicle_models/:id' do
-    before { delete "/vehicle_models/#{vehicle_model_id}" }
+  describe 'DELETE /v1/vehicle_models/:id' do
+    before { delete "/v1/vehicle_models/#{vehicle_model_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(:no_content)
