@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Vehicle Makes API', type: :request do
   let!(:options) { FactoryBot.create_list(:option, 5) }
   let!(:option_name) { Faker::Hipster.words(1).first }
-  let!(:option_included) { Faker::Boolean.boolean }
+  let!(:option_included) { true }
   let(:option_id) { options.first.id }
 
   describe 'GET /options' do
@@ -47,7 +47,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
   describe 'POST /options' do
     context 'when there is a valid request' do
       before { post '/options', params: valid_attributes }
-      let(:valid_attributes) { { name: option_name, included: option_included } }
+      let(:valid_attributes) { { name: option_name, option_included: option_included } }
 
       it 'creates an option' do
         expect(JSON.parse(response.body)['name']).to eq(option_name)
