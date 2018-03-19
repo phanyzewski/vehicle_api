@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module V1
   class VehicleMakesController < ApplicationController
-    before_action :set_vehicle_make, only: [:show, :update, :destroy]
+    before_action :set_vehicle_make, only: %i[show update destroy]
 
     def index
       @vehicle_makes = VehicleMake.all

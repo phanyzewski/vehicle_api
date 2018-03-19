@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module V1
   class OptionsController < ApplicationController
-    before_action :set_option, only: [:show, :update, :destroy]
+    before_action :set_option, only: %i[show update destroy]
 
     def index
       @options = Option.all
@@ -29,7 +31,7 @@ module V1
     private
 
     def option_params
-      params.permit(:name, :included)
+      params.permit(:name, :option_included)
     end
 
     def set_option

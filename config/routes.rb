@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  scope module: :v1, constraints: ApiVersion.new('v1', true) do
+
+  namespace :v1 do
     resources :vehicles do
       resources :options
     end
