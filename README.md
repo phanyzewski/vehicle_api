@@ -37,8 +37,13 @@ added, updated, deleted & associated to each other.
   ```javascript
   query vehicle(vin: '3GCUKREC3EG233361') {
     mileage
-    vehicle_make
-    vehicle_model
+    vehicle_make {
+      name
+    }
+    vehicle_model {
+     name
+     year
+    }
   }
   ```
   **response**
