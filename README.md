@@ -109,6 +109,6 @@ query manufacturer($name: String!) {
       ]
     }
   }
-}
+
 ```
  This example implements [graphiql](https://github.com/graphql/graphiql).  By navigating to localhost:1234/graphiql you can interactively browse the schema, run queries and mutations as defined by the server.
