@@ -105,49 +105,6 @@ query manufacturer($name: String!) {
               ]
             }
           ]
-        },
-        {
-          "name": "Northern Brewer",
-          "options": [
-            {
-              "name": "[\"dreamcatcher\"]",
-              "option_included": true
-            },
-            {
-              "name": "[\"viral\"]",
-              "option_included": true
-            }
-          ],
-          "vehicles": [
-            {
-              "mileage": 93708,
-              "vin": "XF94TN717EBGD41C1",
-              "options": [
-                {
-                  "name": "[\"fingerstache\"]",
-                  "option_included": false
-                },
-                {
-                  "name": "[\"readymade\"]",
-                  "option_included": false
-                }
-              ]
-            },
-            {
-              "mileage": 388550,
-              "vin": "9BE4C58Z1PWY19STP",
-              "options": [
-                {
-                  "name": "[\"selfies\"]",
-                  "option_included": false
-                },
-                {
-                  "name": "[\"hammock\"]",
-                  "option_included": false
-                }
-              ]
-            }
-          ]
         }
       ]
     }
