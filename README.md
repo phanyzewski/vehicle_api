@@ -55,9 +55,9 @@ query manufacturer($name: String!) {
     }
   }
 }
-  ```
+```
   **response**
-  ```
+```
 {
   "data": {
     "manufacturer": {
@@ -110,9 +110,10 @@ query manufacturer($name: String!) {
     }
   }
 }
-  ```
+```
 
-    **example mutation**
+**example mutation**
+
 ```javascript
 mutation options($vin: ID!, $option_included: Boolean!, $name: String!){
   update_vehicle_options(vin: $vin, option_included: $option_included, name: $name){
@@ -124,7 +125,8 @@ mutation options($vin: ID!, $option_included: Boolean!, $name: String!){
   }
 }
 ```
-    **response**
+
+***response***
 
 ```
 {
