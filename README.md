@@ -22,7 +22,9 @@ added, updated, deleted & associated to each other.
   
   Resources made available through this api include vehicles, vehicle_models, vehicle_makes and options.
   Vehicles as well as vehicle_models are closely associated with options
+  
   `GET /v1/vehicle_models/1/options`
+  
   `DELETE /v1/vehicles/1/options/1/`
 
   Vehicles, their models and their makes are likewise associated with each other.
