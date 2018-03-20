@@ -3,6 +3,8 @@
   VehicleAPI presents a vehicle with makes, models, & options to be listed,
 added, updated, deleted & associated to each other.
 
+[![Build Status](https://travis-ci.org/phanyzewski/vehicle_api.svg?branch=master)](https://travis-ci.org/phanyzewski/vehicle_api)
+
 ## Schema
   All api data is sent and received as JSON.  For the purpose of this example seed data is generated and can be accessed locally when running the server.
 
