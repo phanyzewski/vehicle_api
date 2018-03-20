@@ -6,4 +6,5 @@ Types::VehicleObjectType = GraphQL::ObjectType.define do
   field :mileage, types.Int
   field :model, Types::VehicleModelObjectType
   field :make, Types::VehicleMakeObjectType
+  field :options, types[Types::OptionObjectType]
 end
