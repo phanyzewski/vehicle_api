@@ -7,8 +7,6 @@ class Functions::UpdateVehicleOptionsFunction < GraphQL::Function
 
   type Types::OptionObjectType
 
-  attr_accessor :ctx, :loan_number
-
   def call(_obj, args, _ctx)
     vehicle_option = Vehicle.find_by(vin: args[:vin]).options.find { |opt| opt.name == args[:name] }
     return nil unless vehicle_option
