@@ -2,6 +2,8 @@
 
 Types::VehicleObjectType = GraphQL::ObjectType.define do
   name 'Vehicle'
+  description 'A Vehicle, commonly driven on a road'
+
   field :vin, types.ID
   field :mileage, types.Int
   field :vehicle_model, Types::VehicleModelObjectType
