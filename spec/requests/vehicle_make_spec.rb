@@ -35,7 +35,7 @@ RSpec.describe 'Vehicle Makes API', type: :request do
     end
 
     context 'when the record does not exist' do
-      let(:vehicle_make_id) { 100 }
+      let(:vehicle_make_id) { -1 }
 
       it 'returns status code 404' do
         expect(response).to have_http_status(:not_found)
