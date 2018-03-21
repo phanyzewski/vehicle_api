@@ -15,6 +15,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :manufacturer do
+    description 'A company which makes vehicles.'
+
     type Types::VehicleMakeObjectType
     argument :name, !types.String
 
@@ -24,6 +26,8 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :model do
+    description 'Models are vairations of a vehicle as defined by its manufacturer.'
+
     type Types::VehicleModelObjectType
 
     argument :vehicle_model, !types.String
@@ -34,6 +38,9 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :options do
+    description 'Vheicle customization, sometimes standard depending on make/model,
+      sometimes extra and sepcfic to a vehicle.'
+
     type types[Types::OptionObjectType]
 
     argument :vehicle_model,  types.String

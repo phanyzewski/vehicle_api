@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
 
   namespace :v1 do
-    resources :options
     resources :vehicles do
       resources :options
     end

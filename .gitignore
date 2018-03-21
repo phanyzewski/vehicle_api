@@ -9,9 +9,9 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*
-spec/examples.txt
 /tmp/*
-!/log/.keep
-!/tmp/.keep
+/tmp/
+spec/examples.txt
+etc/local/
 
 .byebug_history
