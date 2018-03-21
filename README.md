@@ -32,62 +32,97 @@ added, updated, deleted & associated to each other.
   Resources made available through this api are as follows.
 
 * Status
+
   ```GET /status```
 
 * Vehicles
+
   ```GET /v1/vehicles ```
+
   ```POST /v1/vehicles ```
+
   ```GET /v1/vehicles/:vehicle_id ```
+
   ```PUT /v1/vehicles/:vehicle_id ```
+
   ```DELETE /v1/vehicles/:vehicle_id ```
- *  vehicle options
+
+ * Vehicle options
+
     ```GET /v1/vehicles/:vehicle_id/options/options ```
+
     ```POST /v1/vehicles/:vehicle_id/options/options ```
+
     ```GET /v1/vehicles/:vehicle_id/options/options/:id ```
+
     ```PUT /v1/vehicles/:vehicle_id/options/options/:id ```
+
     ```DELETE /v1/vehicles/:vehicle_id/options/options/:id ```
 
 * Vehicle Models
- ```GET /v1/vehicle_models ```
- ```POST /v1/vehicle_models ```
- ```GET /v1/vehicle_models/:vehicle_model_id ```
- ```PUT /v1/vehicle_models/:vehicle_model_id ```
- ```DELETE /v1/vehicle_models/:vehicle_model_id ```
- *  vehicle model options
+
+   ```GET /v1/vehicle_models ```
+
+   ```POST /v1/vehicle_models ```
+
+   ```GET /v1/vehicle_models/:vehicle_model_id ```
+
+   ```PUT /v1/vehicle_models/:vehicle_model_id ```
+
+   ```DELETE /v1/vehicle_models/:vehicle_model_id ```
+
+ * Vehicle model options
+
     ```GET /v1/vehicle_models/:vehicle_model_id/options/options```
+
     ```POST /v1/vehicle_models/:vehicle_model_id/options/options```
+
     ```GET /v1/vehicle_models/:vehicle_model_id/options/options/:id```
+
     ```PUT /v1/vehicle_models/:vehicle_model_id/options/options/:id```
+
     ```DELETE /v1/vehicle_models/:vehicle_model_id/options/options/:id```
 
 * Vehicles associated with Vehicle Models
+
   ```GET /v1/vehicle_models/:vehicle_make_id/vehicles```
+
   ```GET /v1/vehicle_models/:vehicle_make_id/vehicles```
 
 * Vehicle Makes
+
   ```GET /v1/vehicle_makes ```
+
   ```POST /v1/vehicle_makes ```
 
   ```GET /v1/vehicles/:vehicle_make_id ```
+
   ```PUT /v1/veh_makescles/:vehicle_make_id ```
+
   ```DELETE /v1/vehicle_makes/:vehicle_make_id ```
 
- * Vehicle Models associated with Vehicle Make
+* Vehicle Models associated with Vehicle Make
+
   ```GET /v1/vehicle_makes/:vehicle_make_id/vehicle_models```
+
   ```GET /v1/vehicle_makes/:vehicle_make_id/vehicle_models/:id```
 
- * Vehicles associated with Vehicle Make
+
+* Vehicles associated with Vehicle Make
+
   ```GET /v1/vehicle_makes/:vehicle_make_id/vehicles```
+
   ```GET /v1/vehicle_makes/:vehicle_make_id/vehicles```
 
 * GraphQL
+
   ```POST   /graphql```
 
   ## GraphQL API
 
   GraphQL as an alternative api is available as well and presents a specification for accessing data instead of a style.  This api is defined as a schema which describes the entirety of the data.  It provides the objects and their relationships as well as the methods for which the client can interact with them.  GraphQL schemas allow discovery through its introspection system allowing you to ask a server and learn about queries, types and documentation. Additional reading [graphql](http://graphql.org/)
 
-  **example query**
+**example query**
 ```javascript
 query manufacturer($name: String!) {
   manufacturer(name: $name) {
@@ -110,7 +145,8 @@ query manufacturer($name: String!) {
   }
 }
 ```
-  **response**
+
+***response***
 ```
 {
   "data": {
@@ -167,7 +203,6 @@ query manufacturer($name: String!) {
 ```
 
 **example mutation**
-
 ```javascript
 mutation options($vin: ID!, $option_included: Boolean!, $name: String!){
   update_vehicle_options(vin: $vin, option_included: $option_included, name: $name){
@@ -181,7 +216,6 @@ mutation options($vin: ID!, $option_included: Boolean!, $name: String!){
 ```
 
 ***response***
-
 ```
 {
   "data": {
