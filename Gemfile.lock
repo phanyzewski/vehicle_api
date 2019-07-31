@@ -71,7 +71,7 @@ GEM
     graphiql-rails (1.4.10)
       railties
       sprockets-rails
-    graphql (1.8.3)
+    graphql (1.9.9)
     graphql-client (0.12.3)
       activesupport (>= 3.0, < 6.0)
       graphql (~> 1.6)
